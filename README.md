@@ -17,7 +17,7 @@ Every cell interacts with its eight neighbours, which are the cells that are hor
 * It will spply the rules for the number of generations.
 * It will store the final gird to the output file.
 
-** File format
+## File format
 * Grid will be read form the text file
 * First line of the text file indicated the width and height of the grid, unsigned intergers separated space.
 * All other lines will indicate the position of the living cells. Each line will have the horizontal and vertical position of the living cells.
