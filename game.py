@@ -1,7 +1,6 @@
 import sys
 
 def main():
-
     input_name = "input.txt"
     output_name = "output.txt"
     n = 5
