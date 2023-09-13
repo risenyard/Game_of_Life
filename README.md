@@ -47,4 +47,4 @@ Output:
 0 0 1 1 0 
 0 0 0 0 0 
 ```
-[output.txt](test_data/output_5x5_2.txt)
+[output.txt](test_data/output.txt)
