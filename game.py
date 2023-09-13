@@ -1,42 +1,53 @@
 import sys
 
+# Read the grid in the text file
 def load_grid_from_file(input_file):
-    # Read the grid dimensions
-    width, height = map(int, input_file.readline().split())
-    # Initialize an empty grid
+    # Initialize an empty grid, width and height
     grid = []
+    width = 0
+    height = 0
     # Read positions of living cells and update the grid
     for line in input_file:
-        row= line.split()
+        row = line.split()
         row = list(map(int, row))
         grid.append(row)
+        # Get height and width
+        height += 1
+        width = len(row)
 
     return grid, width, height
 
+# save the grid to the text file
 def save_grid_to_file(output_file, grid):
     for row in grid:
         for cell in row:
-            output_file.write('1' if cell else '0')
+            output_file.write(str(cell)+" ")
         output_file.write('\n')
 
+# to calculate the alive neighbors
 def count_live_neighbors(grid, x, y, width, height):
+    # the neighbor matrix
     neighbors = [
         (-1, -1), (-1, 0), (-1, 1),
         (0, -1),           (0, 1),
-        (1, -1), (1, 0), (1, 1)
+        (1, -1),  (1, 0),  (1, 1)
     ]
-
+    # initialize the count
     count = 0
+    # loop all possible neighbors
     for dx, dy in neighbors:
         nx, ny = x + dx, y + dy
+        # if its neighbor doesn't go beyond the boundary and is alive 
         if 0 <= nx < width and 0 <= ny < height and grid[ny][nx]==1:
             count += 1
 
     return count
 
+# update the gird
 def update_grid(grid, width, height):
     new_grid = [[0] * width for _ in range(height)]
 
+    #apply the rule
     for y in range(height):
         for x in range(width):
             live_neighbors = count_live_neighbors(grid, x, y, width, height)
@@ -52,6 +63,7 @@ def update_grid(grid, width, height):
 
     return new_grid
 
+# run the game
 def run_game(input_name, output_name, generations):
     with open(input_name, 'r') as input_file:
         grid, width, height = load_grid_from_file(input_file)
@@ -62,8 +74,10 @@ def run_game(input_name, output_name, generations):
     with open(output_name, 'w') as output_file:
         save_grid_to_file(output_file, grid)
 
+
 ## main function
 def main():
+    # read the inpur, output and generation from system arguments
     try:
         input_name = sys.argv[1]
     except IndexError:
