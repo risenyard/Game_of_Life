@@ -24,3 +24,8 @@ Every cell interacts with its eight neighbours, which are the cells that are hor
     2. Horizontal index increases from left to right.
     3. Vertical index increases from top to bottom.
 * The digit 1 meand the cell is alive; 0 means the cell is dead.
+
+## Example
+```
+python game.py test_data/input.txt test_data/output.txt 2
+```
