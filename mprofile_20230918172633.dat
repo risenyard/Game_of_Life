@@ -1,0 +1,6 @@
+CMDLINE /Users/yokosukamori/anaconda3/envs/UserA/bin/python game.py test_data/input.txt test_data_output.txt 10
+MEM 0.859375 1695050793.9157
+MEM 17.808594 1695050794.0212
+MEM 27.953125 1695050794.1263
+MEM 37.000000 1695050794.2315
+MEM 42.242188 1695050794.3338

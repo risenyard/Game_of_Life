@@ -1,4 +1,5 @@
 import sys
+import time
 
 # Read the grid in the text file
 def load_grid_from_file(input_file):
@@ -44,6 +45,7 @@ def count_live_neighbors(grid, x, y, width, height):
     return count
 
 # update the gird
+@profile
 def update_grid(grid, width, height):
     new_grid = [[0] * width for _ in range(height)]
 
@@ -68,8 +70,10 @@ def run_game(input_name, output_name, generations):
     with open(input_name, 'r') as input_file:
         grid, width, height = load_grid_from_file(input_file)
 
+    start = time.time()
     for _ in range(generations):
         grid = update_grid(grid, width, height)
+        print("{} seconds run for {} generations.".format(round(time.time() - start, 5), _))
 
     with open(output_name, 'w') as output_file:
         save_grid_to_file(output_file, grid)
