@@ -73,7 +73,7 @@ def run_game(input_name, output_name, generations):
     start = time.time()
     for _ in range(generations):
         grid = update_grid(grid, width, height)
-        print("{} seconds run for {} generations.".format(round(time.time() - start, 5), _))
+        print("{} seconds run for {} generations.".format(round(time.time() - start, 5), _+1))
 
     with open(output_name, 'w') as output_file:
         save_grid_to_file(output_file, grid)
