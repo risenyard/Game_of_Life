@@ -27,24 +27,35 @@ Every cell interacts with its eight neighbours, which are the cells that are hor
 
 ## Example
 ```
-python game.py test_data/input.txt test_data/output.txt 5
+python game.py test_data/input.txt test_data/output.txt 10
 ```
 Input:
 ```
-0 1 0 0 0
-0 0 0 0 1
-0 0 1 0 0
-0 0 1 1 0
-0 0 0 0 0
+5 5
+0 1
+0 2
+1 4
+2 2
+3 1
+3 4
+4 1
+4 2
 ```
 [input.txt](test_data/input.txt)
 
 Output:
 ```
-0 0 0 0 0 
-0 0 0 0 0 
-0 0 1 1 0 
-0 0 1 1 0 
-0 0 0 0 0 
+5 5
+0 3
+1 2
+1 4
+2 1
+2 4
+3 0
+3 4
+4 1
+4 2
+4 3
+4 4
 ```
 [output.txt](test_data/output.txt)
