@@ -76,17 +76,16 @@ def update_grid(grid):
     return new_grid
 
 
-# run the game
 def run_game(input_name, output_name, generations, chunksize):
     grid = load_grid_from_file(input_name) 
     start = time.time()
+    # Dask compute
+    grid_da = da.from_array(grid, chunks=(chunksize[0], chunksize[1]))
     for _ in range(generations):
-        # Dask compute
-        grid_da = da.from_array(grid, chunks=(chunksize[0], chunksize[1]))
-        grid_da_n = grid_da.map_overlap(update_grid, depth=1, boundary="none")
-        grid = grid_da_n.compute()
-        print("{} seconds elapsed for {} generations.".format(round(time.time() - start, 5), _))
-
+        grid_da = grid_da.map_overlap(update_grid, depth=1, boundary="none")
+        #print("{} seconds elapsed for {} generations.".format(round(time.time() - start, 5), _))
+    # Dask compute
+    grid = grid_da.compute()
     save_grid_to_file(output_name, grid)
     return grid
 
