@@ -2,6 +2,7 @@ import numpy as np
 import time
 import sys
 import dask.array as da
+from dask.distributed import Client
 
 # Read the grid in the text file
 def load_grid_from_file(input_file):
@@ -76,17 +77,30 @@ def update_grid(grid):
     return new_grid
 
 
-# run the game
 def run_game(input_name, output_name, generations, chunksize):
+<<<<<<< HEAD
+    grid = load_grid_from_file(input_name)
+    # start = time.time()
+    # Dask compute
+    client = Client()
+    grid_da = da.from_array(grid, chunks=(chunksize[0], chunksize[1]))
+    for _ in range(generations):   
+        grid_da = grid_da.map_overlap(update_grid, depth=1, boundary="none")
+        # print("{} seconds elapsed for {} generations.".format(round(time.time() - start, 5), _))
+    # Dask compute
+    grid = grid_da.compute(scheduler='distributed')
+    client.shutdown()
+=======
     grid = load_grid_from_file(input_name) 
     start = time.time()
+    # Dask compute
+    grid_da = da.from_array(grid, chunks=(chunksize[0], chunksize[1]))
     for _ in range(generations):
-        # Dask compute
-        grid_da = da.from_array(grid, chunks=(chunksize[0], chunksize[1]))
-        grid_da_n = grid_da.map_overlap(update_grid, depth=1, boundary="none")
-        grid = grid_da_n.compute()
-        print("{} seconds elapsed for {} generations.".format(round(time.time() - start, 5), _))
-
+        grid_da = grid_da.map_overlap(update_grid, depth=1, boundary="none")
+        #print("{} seconds elapsed for {} generations.".format(round(time.time() - start, 5), _))
+    # Dask compute
+    grid = grid_da.compute()
+>>>>>>> 6a316ae4e1b24d09f6d3739fe3fcbd0766e7a80f
     save_grid_to_file(output_name, grid)
     return grid
 
