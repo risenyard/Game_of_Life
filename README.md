@@ -26,7 +26,7 @@ Every cell interacts with its eight neighbours, which are the cells that are hor
     2. Vertical index increases from top to bottom. The valid vertical coordinate values range between 0 - (height-1)
     3. Horizontal index increases from left to right. The valid horizontal coordinate values range between 0 - (width-1)
 
-## Example (without DASK) 
+## Example (without DASK, Python version) 
 The first parameter is the path of input file. The second parameter is the path of output file. The third parameter is the number of generation.
 ```
 python game_no_dask.py test_data/input.txt test_data/output.txt 10
@@ -62,7 +62,7 @@ Output:
 ```
 [output.txt](test_data/output.txt)
 
-## Example (with DASK) 
+## Example (with DASK, Python version) 
 The first parameter is the path of input file. The second parameter is the path of output file. The third parameter is the number of generation. The fourth parameter is the height of DASK chunk. The last parameter is the width of DASK chunk.
 ```
 python game_dask.py test_data/input.txt test_data/output.txt 10 2 2
